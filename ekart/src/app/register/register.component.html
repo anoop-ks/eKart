@@ -1,0 +1,49 @@
+<div *ngIf = "!gotoLogin">
+    <nav class = "bg-dark w-100 text-light" style="display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; height: 7vh;">
+        <div  class="pt-1 company-logo" style=" width: 120px;  font-weight: 900;margin-left:30px; font-size: 4vh;">eKart</div>
+    </nav> 
+    
+    
+    
+    <div  style="height : 88vh; display:flex; justify-content: center; align-items: center; background-color: rgb(255, 255, 33); width: 100%;">
+     <div class=" rounded card w-25">
+         <div class="rounded login-head">Register</div>
+         <div class="card-body ">
+             <form [formGroup]="registerform">
+                <div class="mt-4 d-flex justify-content-center align-items-center">
+                    <label>username : </label>
+                    <br>
+                    <input formControlName = "username" type="text">
+                 </div>
+                 <h6 class="text-danger" *ngIf="registerform.controls['username'].invalid"> username Required</h6>
+        
+                 <div class="mt-4 d-flex justify-content-center align-items-center">
+                    <label>password : </label>
+                    <br>
+                    <input formControlName = "password" type="password">
+                 </div>
+                 <h6 class="text-danger" *ngIf="registerform.controls['password'].invalid"> password Required</h6>
+                 <div class="mt-4 d-flex justify-content-center align-items-center">
+                    <label>Confirm password : </label>
+                    <br>
+                    <input formControlName = "cpassword" type="password">
+                 </div>
+                 <h6 class="text-danger" *ngIf="registerform.controls['cpassword'].invalid"> password Required</h6>
+                 
+                 <div class="d-flex justify-content-center w-100 h-25">
+                    <button class="mt-4 login btn-dark btn-lg" [routerLink]="['/register']" [disabled] = "registerform.invalid" (click) ="register()" style="display: inline-flex; align-items: center;">Register</button>
+                 </div>
+             </form>
+             <div class="text-dark mt-3"> already a member? <button class="btn btn-secondary btn-sm reg" [routerLink]="['/login']"
+                (click) = "gotoLogin = true">login</button>
+            </div>
+         </div>
+       </div>
+    </div>
+    <router-outlet></router-outlet>
+    <footer class="bg-dark  text-light d-flex justify-content-center w-100" style="bottom:0; height:5vh">
+       <div>Copyright reserved 2022</div>
+    </footer>

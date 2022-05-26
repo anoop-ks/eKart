@@ -1,0 +1,49 @@
+{
+    "deals" : [
+        {
+            "displayName" : "iPhone 13 Pro",
+            "shortDesc" : "64GB ROM 6GB RAM",
+            "category" : "Smartphone",
+            "discount" : "0%",
+            "deliveryCharge" : "50",
+        "description" : "16GB, White",
+        "price" : "19,442"
+        },
+        {
+            "displayName" : "Moto g31",
+            "shortDesc" : "64GB ROM 4GB RAM",
+            "category" : "Smartphone",
+            "discount" : "10%",
+            "deliveryCharge" : "50",
+        "description" : "16GB, White",
+        "price" : "19,442"
+        },
+        {
+            "displayName" : "Lenovo Yoga",
+            "shortDesc" : "1TB ROM 16GB RAM",
+            "category" : "Laptop",
+            "discount" : "5%",
+            "deliveryCharge" : "50",
+        "description" : "16GB, White",
+        "price" : "19,442"
+        },
+        {
+            "displayName" : "Galaxy Tab S",
+            "shortDesc" : "256GB ROM 12GB RAM",
+            "category" : "Tablet",
+            "discount" : "2%",
+            "deliveryCharge" : "50",
+        "description" : "16GB, White",
+        "price" : "19,442"
+        },
+        {
+            "displayName" : "Lenovo Yoga",
+            "shortDesc" : "1TB ROM 16GB RAM",
+            "category" : "Laptop",
+            "discount" : "5%",
+            "deliveryCharge" : "50",
+        "description" : "16GB, White",
+        "price" : "19,442"
+        }
+    ]
+}

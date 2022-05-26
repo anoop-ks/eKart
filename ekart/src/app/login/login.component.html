@@ -1,0 +1,42 @@
+<div *ngIf = "!gotoReg && !LoginSuccess">
+<nav class = "bg-dark w-100 text-light" style="display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center; height: 7vh;">
+    <div  class="pt-1 company-logo" style=" width: 120px;  font-weight: 900;margin-left:30px; font-size: 4vh;">eKart</div>
+</nav> 
+
+
+
+<div  style="height : 88vh; display:flex; justify-content: center; align-items: center; background-color: rgb(255, 255, 33); width: 100%;">
+ <div class=" rounded card w-25">
+     <div class="rounded login-head">Login</div>
+     <div class="card-body ">
+         <form [formGroup]="loginform">
+            <div class="mt-4 d-flex justify-content-center align-items-center">
+                <label>username : </label>
+                <br>
+                <input formControlName = "username" type="text">
+             </div>
+             <h6 class="text-danger" *ngIf="loginform.controls['username'].invalid"> username Required</h6>
+    
+             <div class="mt-4 d-flex justify-content-center align-items-center">
+                <label>password : </label>
+                <br>
+                <input formControlName = "password" type="password">
+             </div>
+             <h6 class="text-danger" *ngIf="loginform.controls['password'].invalid"> password Required</h6>
+             <div class="d-flex justify-content-center w-100 h-25">
+                <button class="mt-4 login btn-dark btn-lg" [routerLink]="['/product']" [disabled] = "loginform.invalid" (click) ="LoginSuccess = true && completeLogin()" style="display: inline-flex; align-items: center;">login</button>
+             </div>
+         </form>
+         <div class="text-dark mt-3"> not a member? <button class="btn btn-secondary btn-sm reg" [routerLink]="['/register']"
+            (click) = "gotoReg = true">Register</button>
+        </div>
+     </div>
+   </div>
+</div>
+<router-outlet></router-outlet>
+<footer class="bg-dark  text-light d-flex justify-content-center w-100" style="bottom:0; height:5vh">
+   <div>Copyright reserved 2022</div>
+</footer>

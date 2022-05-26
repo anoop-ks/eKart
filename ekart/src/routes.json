@@ -1,0 +1,4 @@
+{
+    "searchproduct":"/searchproduct",
+    "searchproduct/:displayName" : "searchproduct/:displayName"
+}

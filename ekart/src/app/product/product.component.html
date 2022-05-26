@@ -1,0 +1,126 @@
+<nav *ngIf = "!logout "class = "bg-dark w-100 text-light" style="display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center; height: 7vh;">
+    <div class="pt-1 company-logo" (click) = "clicked = false && searchflag = false" style=" width: 120px;  font-weight: 900;margin-left:30px; font-size: 4vh;">eKart</div>
+    <div class="pt-1 company-logo" style=" width: 120px;  font-weight: 900;margin-left:30px; font-size: 2vh;">{{User.username}}</div>
+    <div class="h-50" style="float:right; margin-right: 50px;">
+        <!-- search-icon     -->
+            <svg fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            <input type="text"  class=" rounded"  (keyup.enter)="searchclick($event, searchbox.value)" #searchbox />
+            <span class = "text-warning" *ngIf="searcherror">Product not found</span>
+            <!-- profile     -->
+            <svg  fill="currentColor" class=" logo bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+
+        <!-- notification -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="logo bi bi-bell-fill" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+
+        <!-- wishlist -->
+            <svg fill="currentColor" class="logo bi bi-heart-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            </svg>
+
+        <!-- cart -->
+            <svg fill="currentColor" class="logo bi bi-cart-check-fill" viewBox="0 0 16 16">
+                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+            </svg>
+            <button  [routerLink]="['/login']" (click) = "logout = true" class=" btn btn-outline-light logout btn-sm">Logout</button>
+    </div>
+</nav> 
+<router-outlet></router-outlet>
+<div style="height : 88vh; display:flex; background-color: rgb(255, 255, 33); width: 100%;">
+    <!-- <ul *ngIf="searchflag">
+        <li>{{seachResult.displayName}}</li>
+    </ul> -->
+
+    <!-- -----------------body------------------- -->
+
+    <div *ngIf = "!clicked && !searchflag" class=" w-100 mt-4 mb-4 container" >
+       <!-- heading -->
+        <div class="w-100 mt-1 d-flex justify-content-center heading bg-dark">
+           <div class="text-light ">Deals Of The Day</div>
+       </div>
+
+       <!-- content -->
+       <div class="w-100  content bg-dark">
+        <div class="card" (click) = "clicked = true" *ngFor="let deal of deals" style="width: 20%;">
+            <!-- ngfor -->
+            <div (click)=" searchclick($event, deal.displayName)" class="card-body d-flex  align-items-center justify-content-center">
+              <h5 class="card-title">{{deal.displayName}}</h5>
+              <div class="card-text" style="font-size: small;">
+                  <div>{{deal.shortDesc}}</div>
+                  <div>{{deal.category}}</div>
+                  <div>{{deal.discount}}% Discount</div>
+              </div>
+            </div>
+        </div>
+          <!-- end of deals -->
+
+    </div>
+
+
+
+    <!-- Recommendations start  -->
+    <div class="w-100 mt-4 d-flex justify-content-center heading bg-dark">
+        <div class="text-light ">Curated Just For You !</div>
+    </div>
+    <div class="w-100  content bg-dark">
+        <div class="card " (click) = "clicked = true" *ngFor="let Recommendation of curated">
+            <!-- ngfor -->
+            <div (click)=" searchclick($event, Recommendation.displayName)" class="card-body d-flex  align-items-center justify-content-center" (click)="getdetails(Recommendation.displayName )" >
+              <h5 class="card-title" style="width: 100%;">{{Recommendation.displayName}}</h5>
+              <div class="card-text">
+                  <div style="font-size: small;">{{Recommendation.shortDesc}}</div>
+                  <div style="font-size: small;">{{Recommendation.category}}</div>
+              </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Recommendations end  -->
+
+    <!-- ------------product details by search------------------ -->
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone-fill" viewBox="0 0 16 16">
+        <path d="M3 2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2zm6 11a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
+      </svg> for smartphone -->
+    <div *ngIf="searchflag"  class=" d-flex align-items-center justify-content-center rounded w-100 mt-4 mb-4 container" style="background-color: antiquewhite;">
+        
+        <div class="tab-container d-flex align-items-center">
+            <svg fill="currentColor" class="bi bi-tablet tablet" viewBox="0 0 16 16">
+                <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+        </div>
+
+        <div class="tab-container d-flex align-items-center">
+            <div>
+              
+              <h1 class="mb-5">{{searchResult.displayName}}</h1>
+              
+              <h5 class="mb-3">Features : {{searchResult.shortDesc}}, {{searchResult.description}}</h5>
+              <h5 class="mb-3">Category : {{searchResult.category}}</h5>
+              <h4 class="mb-3">Price : Rs. {{searchResult.price}}</h4>
+              <h4 class="mb-3">Discount : {{searchResult.discount}}% off</h4>
+              <h5 class="mb-3">Deliver Charges : Rs. {{searchResult.deliveryCharge}}</h5>
+              <div>
+                  <button class="add btn btn-primary">Add to Wishlist</button>
+                  <button (click) = "addtocart(searchResult.prod_id)" class="add btn btn-primary">Add to cart</button>
+                  <button (click) = "goback()" class="add btn btn-primary">Go Back</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- ------------product details by search------------------ -->
+
+    <!-- -----------------body------------------- -->
+</div>
+<footer class="bg-dark  text-light d-flex justify-content-center w-100" style="bottom:0; height:5vh">
+    <div>Copyright reserved 2022</div>
+</footer>

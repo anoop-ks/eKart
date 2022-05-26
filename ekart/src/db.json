@@ -1,0 +1,28 @@
+{
+    "appleipadmini2":{
+        "displayName" : "Apple iPad Mini 2",
+        "shortDesc" : "TAB-120",
+        
+        "category" : "tablet",
+        
+        "discount" : "0", 
+
+
+
+        
+        "deliveryCharge" : "50",
+        "description" : "16GB, White",
+        "price" : "19,442"
+    },
+    "lenovoyoga" :{
+        "displayName" : "Lenovo Yoga",
+        "shortDesc" : "i5 8th gen",
+        "description" : "512GB, black",
+        "category" : "laptop",
+        "price" : "60,541",
+        "discount" : "2", 
+        "deliveryCharge" : "100"
+    }
+
+    
+}
